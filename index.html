@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: #000000;
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"],
+        button {
+            padding: 10px 20px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0062cc;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Number Guessing Game</h1>
+        <p>Guess a number between 1 and 100:</p>
+        <input type="text" id="guess" placeholder="Enter your guess">
+        <button id="check">Check Guess</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        const guessInput = document.getElementById('guess');
+        const checkButton = document.getElementById('check');
+        const result = document.getElementById('result');
+
+        let randomNumber = Math.floor(Math.random() * 100) + 1;
+        let attempts = 0;
+
+        checkButton.addEventListener('click', () => {
+            const guess = parseInt(guessInput.value);
+            attempts++;
+
+            if (isNaN(guess) || guess < 1 || guess > 100) {
+                result.textContent = "Please enter a valid number between 1 and 100.";
+            } else if (guess < randomNumber) {
+                result.textContent = "Too low! Try again.";
+            } else if (guess > randomNumber) {
+                result.textContent = "Too high! Try again.";
+            } else {
+                result.textContent = `Congratulations! You guessed it in ${attempts} attempts.`;
+                checkButton.disabled = true;
+               
+        });
+    </script>
+</body>
+</html>
